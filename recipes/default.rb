@@ -13,7 +13,7 @@ execute "Extracting and Building tig #{node['tig']['version']} from Source" do
     git clone #{node['tig']['url']}
     cd tig
     make prefix=#{node['tig']['prefix']}
-    make install
+    make install prefix=#{node['tig']['prefix']}
   COMMAND
   creates "#{node['tig']['prefix']}/bin/tig"
   not_if "#{node['tig']['prefix']}/bin/tig -v | grep #{node['tig']['version']}"
